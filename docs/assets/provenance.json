@@ -1,0 +1,41 @@
+{
+  "figure_sources": {
+    "teaser": {
+      "source": "figures/fig_teaser.pdf",
+      "sha256": "a4fa2c0584ab1acc4168c733cbb47acf0f5faf12f757b58fe6e8f32fa393cf75",
+      "web_asset": "teaser.webp",
+      "web_sha256": "799747d5cc495e19b24ab322b8d14e2d39919ada8e57fd8ac14ae430cb68b568"
+    },
+    "framework": {
+      "source": "figures/fig0_pipeline.pdf",
+      "sha256": "dd863072b4443123246b5a834a5876c41d202bcec40336b19e9d2a29f44f563d",
+      "web_asset": "framework.webp",
+      "web_sha256": "6ece6dc37c810a3c3698f14415a371702b09167aec254cf36f4a72ab8f6b3719"
+    },
+    "distributions": {
+      "source": "figures/fig_task_distributions.pdf",
+      "sha256": "213ccc2da923928b90c3281b7a08e0757428daf5a3717d858611c711e6b1b78b",
+      "web_asset": "distributions.webp",
+      "web_sha256": "bdc4dfc62622585340f869e2609b959c7b2d0cb05668056301e1409ab77af591"
+    },
+    "correlations": {
+      "source": "figures/fig_unified_D_main.pdf",
+      "sha256": "44f7acd87ffa79daae64cf5b929003c847ca03b363fe994ae3b630d28f3a7420",
+      "web_asset": "correlations.webp",
+      "web_sha256": "a87401a6f7e632f39ab3f6ac8f7b8c58f0971fd77be3545eac7fdb09b3b1233e"
+    }
+  },
+  "data_sources": {
+    "inputs/performance_per_seed.csv": "c89b8c6de474ad0171c47a60370c88cef741f61c9123b8fc1fb25e987be79457",
+    "inputs/orders.csv": "f1ea3203c19fd11c38901f16879cf411570ce8c988461184263e498d65c74dae",
+    "results/per_order.csv": "7707048468b8f62ba390c83bca954baa0da000c3c7a710ad87ff46bb64746a19"
+  },
+  "note": "The teaser ranking panel contains measured FDE-CT values; its lower panel and the framework figure are schematic.",
+  "manuscript": {
+    "source": "anonymous review build",
+    "sha256": "19e7989e17d5c7bf264724de34f8c707faa8bf43a74fc8ca3a9e18ad7bd2571b",
+    "pages": null
+  },
+  "results_json_sha256": "2c822124603a483c6035a4f24a2d4459fe8d096c288dc4740d63a94266534924",
+  "updated": "2026-10-09"
+}
