@@ -229,7 +229,7 @@ def boldmath(cell):
  return r'{\boldmath'+cell+'}'
 sep_lookup={(r.metric,r.Order):r for r in sep.itertuples()}
 for kind,ms in [('plasticity',['FDE-CT','MR-CT']),('stability',['FDE-BWT','MR-BWT'])]:
- cap=('Current-task errors by task order (mean $\\pm$ sample standard deviation over three replicates). FDE in metres; MR in percent. Bold: per-order minimum separable from the runner-up (Section~\\ref{subsec:analysis_protocol}).' if kind=='plasticity' else 'Backward transfer by task order (mean $\\pm$ sample standard deviation over three replicates). FDE in metres; MR in percentage points. Bold as in Table~\\ref{tab:main_results_plasticity}.')
+ cap=('Current-task errors by task order (mean $\\pm$ sample standard deviation over three replicates). FDE is in metres and MR in percent. Bold: per-order minimum separable from the runner-up (Section~\\ref{subsec:analysis_protocol}).' if kind=='plasticity' else 'Backward transfer by task order (mean $\\pm$ sample standard deviation over three replicates). FDE is in metres and MR in percentage points. Bold as in Table~\\ref{tab:main_results_plasticity}.')
  lines=[r'\begin{table*}[!t]',r'\centering',r'\caption{'+cap+'}',r'\label{tab:main_results_'+kind+'}',r'\setlength{\tabcolsep}{3.5pt}',r'\renewcommand{\arraystretch}{1.0}',r'\fontsize{7}{7.7}\selectfont',r'\begin{tabular*}{\textwidth}{@{\extracolsep{\fill}}lcccccccc}',r'\toprule',r'Order & \multicolumn{2}{c}{Vanilla} & \multicolumn{2}{c}{DER} & \multicolumn{2}{c}{SyReM} & \multicolumn{2}{c}{GSM} \\',r'\cmidrule(lr){2-3}\cmidrule(lr){4-5}\cmidrule(lr){6-7}\cmidrule(lr){8-9}', ' & '+' & '.join(metric_tex[m] for a in ALGOS for m in ms)+r' \\',r'\midrule']
  for oid in range(24):
   cellsx=[]
@@ -273,7 +273,7 @@ for i,rec in enumerate(starting):
  lines.append('ABCD'[i]+' & '+' & '.join(num(v) for v in values)+r' \\')
 lines.extend([r'\bottomrule',r'\end{tabular*}',r'\end{table}']);write_table('table_diagnostics.tex',lines)
 # Final errors with bootstrap leader probabilities.
-lines=[r'\begin{table}[!t]',r'\centering',r'\caption{Final errors: mean [minimum, maximum] over order-level replicate means, and the bootstrap probability (Prob.) of the smallest uniform mean. FDE in metres; MR in percent. Bold: smallest mean.}',r'\label{tab:final_error}',r'\setlength{\tabcolsep}{3pt}',r'\footnotesize',r'\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lcrcr@{}}',r'\toprule',r'Algorithm & FDE: mean [min, max] & Prob. & MR: mean [min, max] & Prob. \\',r'\midrule']
+lines=[r'\begin{table}[!t]',r'\centering',r'\caption{Final errors: mean [minimum, maximum] over order-level replicate means, and the bootstrap probability (Prob.) of the smallest uniform mean. FDE is in metres and MR in percent. Bold: smallest mean.}',r'\label{tab:final_error}',r'\setlength{\tabcolsep}{3pt}',r'\footnotesize',r'\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lcrcr@{}}',r'\toprule',r'Algorithm & FDE: mean [min, max] & Prob. & MR: mean [min, max] & Prob. \\',r'\midrule']
 exdf=pd.DataFrame(exsumm)
 for a in ALGOS:
  vals=[]
@@ -293,7 +293,7 @@ for m in METRICS+['FDE-CT2N','MR-CT2N']:
  lines.append(metric_tex[m]+' & '+' & '.join(num(v,'.2f',True) for v in pc.loc[m].values)+r' \\')
 lines.extend([r'\bottomrule',r'\end{tabular*}',r'\end{table}']);write_table('table_starting_correlations.tex',lines)
 # Extended sum-of-squares decomposition table.
-lines=[r'\begin{table}[!t]',r'\centering',r'\caption{Percentage of the total centred sum of squares per component. The order term is split into starting-task identity (Start) and order within starting task; the last three columns give the 18 orders that do not start with A.}',r'\label{tab:decomposition}',r'\setlength{\tabcolsep}{1.8pt}',r'\footnotesize',r'\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}',r'\toprule',r' & \multicolumn{5}{c}{All 24 orders (\%)} & \multicolumn{3}{c}{Excl.\ A-first (\%)} \\',r'\cmidrule(lr){2-6}\cmidrule(lr){7-9}',r'Metric & Start & \shortstack{Order$\mid$\\start} & Alg. & \shortstack{Order$\times$\\alg.} & Within & Order & Alg. & Within \\',r'\midrule']
+lines=[r'\begin{table}[!t]',r'\centering',r'\caption{Percentage of the total centred sum of squares per component. The order term is split into starting-task identity (Start) and order within starting task, and the last three columns give the 18 orders that do not start with A.}',r'\label{tab:decomposition}',r'\setlength{\tabcolsep}{1.8pt}',r'\footnotesize',r'\begin{tabular*}{\columnwidth}{@{\extracolsep{\fill}}lrrrrrrrr@{}}',r'\toprule',r' & \multicolumn{5}{c}{All 24 orders (\%)} & \multicolumn{3}{c}{Excl.\ A-first (\%)} \\',r'\cmidrule(lr){2-6}\cmidrule(lr){7-9}',r'Metric & Start & \shortstack{Order$\mid$\\start} & Alg. & \shortstack{Order$\times$\\alg.} & Within & Order & Alg. & Within \\',r'\midrule']
 for m in METRICS+['FDE-CT2N','MR-CT2N']:
  if m=='FDE-CT2N':lines.append(r'\midrule')
  ra=extended[(extended.metric==m)&(extended.subset=='all_orders')].iloc[0];rb=extended[(extended.metric==m)&(extended.subset=='excluding_A_first')].iloc[0]
